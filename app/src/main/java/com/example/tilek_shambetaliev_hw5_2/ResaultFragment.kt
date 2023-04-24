@@ -27,10 +27,9 @@ class ResaultFragment : Fragment() {
         val result=arguments?.getSerializable("key") as LoveModel
         binding.tvFirstName.text=result.firstName
         binding.tvSecondName.text= result.secondName
-        binding.tvResult.text=result.result
-
+        binding.tvResult.text=result.percentage
         binding.btnTryAgain.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.calculateFragment)
         }
     }
 }

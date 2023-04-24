@@ -9,5 +9,4 @@ class RetrofitServise {
         .addConverterFactory(GsonConverterFactory.create()).build()
 
     var api = retrofit.create(LoveApi::class.java)
-
 }
