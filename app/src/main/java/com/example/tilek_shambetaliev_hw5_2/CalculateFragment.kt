@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tilek_shambetaliev_hw5_2.databinding.FragmentCalculateBinding
 import retrofit2.Call
@@ -17,6 +19,7 @@ import retrofit2.Response
 class CalculateFragment : Fragment() {
 
     lateinit var binding: FragmentCalculateBinding
+    val viewModel: LoveViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,25 +37,32 @@ class CalculateFragment : Fragment() {
     private fun initClickers() {
         with(binding) {
             btnCalculate.setOnClickListener {
-                RetrofitServise().api.percentageNames(
-                    etFirstName.text.toString(),
-                    etSecondName.text.toString()
-                ).enqueue(object : Callback<LoveModel> {
-                    override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
-                        if (response.isSuccessful) {
-                            Log.d("ololo", "onResponse: ${response.body()}")
-                            findNavController().navigate(
-                                R.id.resaultFragment,
-                                bundleOf("key" to response.body())
-                            )
-                        }
-                    }
+                viewModel.liveLove(etFirstName.text.toString(), etSecondName.text.toString())
+                    .observe(viewLifecycleOwner, Observer { LoveModel ->
+                        Log.e("ololo", "initClickers: ${LoveModel}")
+                        findNavController().navigate(R.id.resaultFragment, bundleOf("key" to LoveModel))
 
-                    override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                        Log.d("ololo", "onFailure: ${t.message}")
-                    }
-                })
+                    })
             }
         }
     }
+
+    /*RetrofitServise().api.percentageNames(
+    etFirstName.text.toString(),
+    etSecondName.text.toString()
+    ).enqueue(object : Callback<LoveModel> {
+        override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
+            if (response.isSuccessful) {
+                Log.d("ololo", "onResponse: ${response.body()}")
+                findNavController().navigate(
+                    R.id.resaultFragment,
+                    bundleOf("key" to response.body())
+                )
+            }
+        }
+
+        override fun onFailure(call: Call<LoveModel>, t: Throwable) {
+            Log.d("ololo", "onFailure: ${t.message}")
+        }
+    })*/
 }
