@@ -1,18 +1,18 @@
 package com.example.tilek_shambetaliev_hw5_2
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class Repository {
+class Repository @Inject constructor(val api: LoveApi) {
 
     fun getLove(firstName: String, secondName: String): MutableLiveData<LoveModel> {
-        var liveLove = MutableLiveData<LoveModel>()
+        val liveLove = MutableLiveData<LoveModel>()
 
-        RetrofitServise().api.percentageNames(firstName, secondName)
+        api.percentageNames(firstName, secondName)
             .enqueue(object : Callback<LoveModel> {
                 override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
                     if (response.isSuccessful) {
@@ -21,7 +21,7 @@ class Repository {
                 }
 
                 override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                    Log.e("ololo", "onFailure: ${t.message}")
+                    Log.e("olololo", "onFailure: ${t.message}")
                 }
             })
         return liveLove

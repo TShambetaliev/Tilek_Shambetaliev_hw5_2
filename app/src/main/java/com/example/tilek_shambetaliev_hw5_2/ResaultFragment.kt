@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.tilek_shambetaliev_hw5_2.databinding.FragmentResaultBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 class ResaultFragment : Fragment() {
@@ -29,7 +30,7 @@ class ResaultFragment : Fragment() {
         binding.tvSecondName.text= result.secondName
         binding.tvResult.text=result.percentage
         binding.btnTryAgain.setOnClickListener {
-            findNavController().navigate(R.id.calculateFragment)
+            findNavController().navigateUp()
         }
     }
 }

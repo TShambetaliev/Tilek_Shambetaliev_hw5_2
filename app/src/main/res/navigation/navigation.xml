@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/calculateFragment">
+    app:startDestination="@id/onBoardFragment">
 
     <fragment
         android:id="@+id/calculateFragment"
@@ -12,4 +12,8 @@
         android:id="@+id/resaultFragment"
         android:name="com.example.tilek_shambetaliev_hw5_2.ResaultFragment"
         android:label="ResaultFragment" />
+    <fragment
+        android:id="@+id/onBoardFragment"
+        android:name="com.example.tilek_shambetaliev_hw5_2.ui.OnBoardFragment"
+        android:label="OnBoardFragment" />
 </navigation>
