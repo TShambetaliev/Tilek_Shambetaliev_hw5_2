@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/onBoardFragment">
 
@@ -16,4 +17,9 @@
         android:id="@+id/onBoardFragment"
         android:name="com.example.tilek_shambetaliev_hw5_2.ui.OnBoardFragment"
         android:label="OnBoardFragment" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.tilek_shambetaliev_hw5_2.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

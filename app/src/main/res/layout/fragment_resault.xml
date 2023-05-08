@@ -57,9 +57,10 @@
     android:id="@+id/btn_try_again"
     app:cornerRadius="50dp"
     android:layout_width="250dp"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:text="@string/try_again"
     android:textSize="20sp"
     android:textColor="@color/black"/>
+
 
 </LinearLayout>

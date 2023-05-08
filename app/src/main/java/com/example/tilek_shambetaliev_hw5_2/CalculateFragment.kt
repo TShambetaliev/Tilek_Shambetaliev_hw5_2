@@ -36,32 +36,17 @@ class CalculateFragment : Fragment() {
 
     private fun initClickers() {
         with(binding) {
+            btnHistory.setOnClickListener {
+                findNavController().navigate(R.id.historyFragment)
+            }
             btnCalculate.setOnClickListener {
                 viewModel.liveLove(etFirstName.text.toString(), etSecondName.text.toString())
                     .observe(viewLifecycleOwner, Observer { LoveModel ->
+                        App.appDataBase.getDao().insert(LoveModel)
                         Log.e("ololol", "initClickers: ${LoveModel}")
                         findNavController().navigate(R.id.resaultFragment, bundleOf("key" to LoveModel))
                     })
             }
         }
     }
-
-    /*RetrofitServise().api.percentageNames(
-    etFirstName.text.toString(),
-    etSecondName.text.toString()
-    ).enqueue(object : Callback<LoveModel> {
-        override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
-            if (response.isSuccessful) {
-                Log.d("ololo", "onResponse: ${response.body()}")
-                findNavController().navigate(
-                    R.id.resaultFragment,
-                    bundleOf("key" to response.body())
-                )
-            }
-        }
-
-        override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-            Log.d("ololo", "onFailure: ${t.message}")
-        }
-    })*/
 }
